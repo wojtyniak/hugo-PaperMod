@@ -6,7 +6,14 @@
             height="{{ .imageHeight | default 150 }}" width="{{ .imageWidth | default 150 }}" />
         {{- end }}
         <h1>{{ .title | default $.Site.Title | markdownify }}</h1>
-        <span>{{ .subtitle | markdownify }}</span>
+        {{- if .subtitleUrl }}
+            <a href="{{ trim .subtitleUrl " " }}">
+        {{- end }}
+            <span>{{ .subtitle | markdownify }}</span>
+        {{- if .subtitleUrl }}
+            </a>
+        {{- end }}
+
         {{- partial "social_icons.html" $.Site.Params.socialIcons -}}
 
         {{- with .buttons }}
